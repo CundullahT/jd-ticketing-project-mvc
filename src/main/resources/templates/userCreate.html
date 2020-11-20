@@ -32,17 +32,89 @@
 
                             <section class="panel panel-transparent">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Project Create</h2>
+                                    <h2 class="panel-title">User Create</h2>
                                 </header>
 
                                 <div class="panel-body">
 
-                                    <!-- ------------------------FORM START----------------------------- -->
-                                    <form>
-
-
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstName" class="col-form-label">First Name</label>
+                                                    <input id="firstName" type="text" placeholder="first name" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="lastName" class="col-form-label">Last Name</label>
+                                                    <input id="lastName" type="text" placeholder="last name" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="email" class="col-form-label">Email Address</label>
+                                                    <input id="email" type="email" placeholder="email address" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="phone_number" class="col-form-label">Phone Number</label>
+                                                    <input id="phone_number" type="text" placeholder="phone number" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password" class="col-form-label">Password</label>
+                                                    <input id="password" type="password" placeholder="password" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="repassword" class="col-form-label">Password Confirmation</label>
+                                                    <input id="repassword" type="password" placeholder="confirm your password" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Gender</label>
+                                                    <br>
+                                                    <label class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" name="radio-inline" class="custom-control-input"><span
+                                                            class="custom-control-label">Male</span>
+                                                    </label>
+                                                    <label class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" name="radio-inline" class="custom-control-input"><span
+                                                            class="custom-control-label">Female</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="roleid">Choose a Role</label>
+                                                    <select name="roleid" id="roleid" class="custom-select" required="required">
+                                                        <option value="none" selected="selected">Select</option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="manager">Manager</option>
+                                                        <option value="employee">Employee</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-12">
+                                                <div class="float-right">
+                                                    <button class="btn btn-success rounded-0" type="submit">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
-                                    <!-- ------------------------FORM END----------------------------- -->
 
                                 </div>
 
@@ -69,11 +141,16 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th scope="col"></th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email(Username)</th>
+                                                <th scope="col">Gender</th>
+                                                <th scope="col">Phone</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                            <tr th:each="${}">
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
