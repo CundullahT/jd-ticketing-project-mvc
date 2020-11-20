@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     @GetMapping("userCreate")
-    public String userCreate(Model model){
+    public String userCreate(Model model) {
 
         return "userCreate";
 
