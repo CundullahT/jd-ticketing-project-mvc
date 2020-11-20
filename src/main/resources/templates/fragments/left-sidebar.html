@@ -40,12 +40,12 @@
                   <div id="submenu-1" class="collapse submenu" style="">
                     <ul class="nav flex-column">
                       <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user/create}"
+                        <a class="nav-link" th:href="@{/admin/userCreate}"
                           >User Create</a
                         >
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" th:href="@{/project/create}"
+                        <a class="nav-link" th:href="@{/admin/projectCreate}"
                           >Project Create</a
                         >
                       </li>
@@ -67,13 +67,13 @@
                   <div id="submenu-2" class="collapse submenu" style="">
                     <ul class="nav flex-column">
                       <li class="nav-item">
-                        <a class="nav-link" th:href="@{/task/create}"
+                        <a class="nav-link" th:href="@{/manager/taskCreate}"
                           >Task Create
                           <span class="badge badge-secondary">New</span></a
                         >
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="mark.html">Project Status</a>
+                        <a class="nav-link" th:href="@{/manager/projectStatus}">Project Status</a>
                       </li>
  
                     </ul>
