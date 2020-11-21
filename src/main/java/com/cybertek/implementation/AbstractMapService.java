@@ -5,29 +5,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractMapService<ID, T> {
+public abstract class AbstractMapService<T,ID> {
 
-    protected Map<ID, T> map = new HashMap<>();
+    protected Map<ID,T> map = new HashMap<>();
 
-    T save(ID id, T t){
-        map.put(id,t);
-        return t;
+    T save(ID id,T object){
+        map.put(id,object);
+        return object;
     }
 
     List<T> findAll(){
         return new ArrayList<>(map.values());
     }
 
-    T findByID(ID id){
+    T findById(ID id){
         return map.get(id);
     }
 
-    void deleteByID(ID id){
+    void deleteById(ID id){
         map.remove(id);
     }
 
-    void delete(T t){
-        map.entrySet().removeIf(entry -> entry.getValue().equals(t));
+    void delete(T object){
+        map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
+
+
+
+
+
+
+
 
 }

@@ -1,6 +1,10 @@
 package com.cybertek.service;
 
+import com.cybertek.dto.RoleDTO;
 import com.cybertek.dto.UserDTO;
 
-public interface RoleService extends CrudService<UserDTO, Long> {
+import java.util.List;
+
+public interface RoleService extends CrudService<RoleDTO,Long> {
+
 }
