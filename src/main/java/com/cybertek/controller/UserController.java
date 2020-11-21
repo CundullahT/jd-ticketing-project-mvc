@@ -14,6 +14,7 @@ public class UserController {
     public String userCreate() {
 
 
+
         return "user/create";
 
     }

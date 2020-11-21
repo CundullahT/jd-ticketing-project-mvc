@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProjectController {
 
     @GetMapping({"/create", "/add", "/initialize"})
-    public String userCreate() {
+    public String projectCreate() {
+
 
 
         return "project/create";
@@ -18,7 +19,7 @@ public class ProjectController {
     }
 
     @PostMapping("/list")
-    public String userList(){
+    public String projectList(){
 
 
 
