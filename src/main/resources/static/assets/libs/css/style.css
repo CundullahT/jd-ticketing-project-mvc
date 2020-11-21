@@ -298,7 +298,7 @@ select.form-control {
     background-position: 99% 52%;
     background-size: auto;
     background-repeat: no-repeat;
-    background-image: url(../../images/down-arrow.png);
+    background-image: url(static/images/down-arrow.png);
     padding-right: 15px;
     border: 1px solid #d2d2e4;
     border-radius: 2px;
@@ -5109,8 +5109,8 @@ Vertical Timeline - by CodyHouse.co
     display: flex;
     margin: 0;
     border: 0;
-    -ms-flex-wrap: none;
-    flex-wrap: none;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -5329,7 +5329,7 @@ Vertical Timeline - by CodyHouse.co
     margin: 0 .5em;
     height: 8px;
     width: 6px;
-    background-image: url(../../images/drag-indicator.png);
+    background-image: url(static/images/drag-indicator.png);
     -webkit-transform: translate3d(-.5em, 0, 0);
     transform: translate3d(-.5em, 0, 0);
     -webkit-user-select: none;
