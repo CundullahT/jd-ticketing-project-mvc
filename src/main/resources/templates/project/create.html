@@ -32,110 +32,66 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate>
+                                    <form class="needs-validation" novalidate th:action="@{/project/create}" method="post" th:object="${project}">
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col">
                                                 <div class="form-group">
-                                                    <label for="firstname" class="col-form-label">First Name</label>
-                                                    <input id="firstname" type="text" placeholder="first name" class="form-control" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter first name.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="lastname" class="col-form-label">Last Name</label>
-                                                    <input id="lastname" type="text" placeholder="last name" class="form-control" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter last name.
-                                                    </div>
+                                                    <label class="col-form-label">Project Name</label>
+                                                    <input id="projectname" type="text" placeholder="project name" th:field="*{projectName}" class="form-control" required>
+                                                    <div class="invalid-feedback">Please enter project name.</div>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col">
                                                 <div class="form-group">
-                                                    <label for="emailaddress" class="col-form-label">Email Address</label>
-                                                    <input id="emailaddress" type="text" placeholder="email address" class="form-control" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter email.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="phonenumber" class="col-form-label">Phone Number</label>
-                                                    <input id="phonenumber" type="tel" placeholder="phone number" class="form-control"  pattern="^\d{10}$" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter 10 digit mobile number.
-                                                    </div>
+                                                    <label class="col-form-label">Project Code</label>
+                                                    <input id="projectcode" type="text" placeholder="project code" th:field="*{projectCode}" class="form-control" required>
+                                                    <div class="invalid-feedback">Please enter project code.</div>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col">
                                                 <div class="form-group">
-                                                    <label for="password" class="col-form-label">Password</label>
-                                                    <input id="password" type="password" placeholder="password" class="form-control"
-                                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" required>
-                                                    <div class="invalid-feedback">
-                                                        Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters"
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="repassword" class="col-form-label">Password</label>
-                                                    <input id="repassword" type="password" placeholder="confirm your password" class="form-control"
-                                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" required>
-                                                    <div class="invalid-feedback">
-                                                        Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters"
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label>Gender</label><br>
-                                                    <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" checked="" class="custom-control-input"><span class="custom-control-label">Male</span>
-                                                    </label>
-                                                    <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">Female</span>
-                                                    </label>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label>Choose a Role</label>
-                                                    <select name="roleid" id="roleid" class="custom-select" required="required">
-                                                        <option value="select" selected="selected">Select</option>
-                                                        <option value="admin">Admin</option>
-                                                        <option value="manager">Manager</option>
-                                                        <option value="employee">Employee</option>
+                                                    <label>Assigned Manager</label>
+                                                    <select th:field="*{assignedManager}" class="custom-select" required="required">
+                                                        <option th:value=" ''" th:text="Select"></option>
+                                                        <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
                                                     </select>
+                                                    <div class="invalid-feedback">Please choose manager</div>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-12">
-                                                <div class="float-right">
-                                                    <button type="submit" class="btn btn-success">Save</button>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Project Start Date</label>
+                                                    <input type="date" th:field="*{startDate}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Project End Date</label>
+                                                    <input type="date" th:field="*{endDate}" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Project Detail</label>
+                                                    <textarea class="form-control" th:field="*{projectDetail}"required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="float-right">
+                                                    <button class="btn btn-success rounded-0" type="submit">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
                                     <!-- ------------------------FORM END----------------------------- -->
 
@@ -158,53 +114,32 @@
                         <div class="col-md-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Project List</h2>
+                                    <h2 class="panel-title">User List</h2>
                                 </header>
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Email(username)</th>
-                                                <th scope="col">Gender</th>
-                                                <th scope="col">Phone</th>
-                                                <th scope="col">Role</th>
+                                                <th scope="col">Project Code</th>
+                                                <th scope="col">Project Name</th>
+                                                <th scope="col">Start - End Date</th>
+                                                <th scope="col">Manager</th>
+                                                <th scope="col">Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Ozzy</td>
-                                                <td>ozzy@cybertekschool.com</td>
-                                                <td>Male</td>
-                                                <td>2022023333</td>
-                                                <td>Employee</td>
-                                                <td class="actions">
-                                                    <a href=""><button type="button" class="btn btn-warning btn-sm">Update</button></a>
-                                                    <a href="" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ozzy</td>
-                                                <td>ozzy@cybertekschool.com</td>
-                                                <td>Male</td>
-                                                <td>2022023333</td>
-                                                <td>Employee</td>
-                                                <td class="actions">
-                                                    <a href=""><button type="button" class="btn btn-warning btn-sm">Update</button></a>
-                                                    <a href="" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ozzy</td>
-                                                <td>ozzy@cybertekschool.com</td>
-                                                <td>Male</td>
-                                                <td>2022023333</td>
-                                                <td>Employee</td>
-                                                <td class="actions">
-                                                    <a href=""><button type="button" class="btn btn-warning btn-sm">Update</button></a>
-                                                    <a href="" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
+                                            <tr th:each="project : ${projects}">
+                                                <td th:text="${project.projectCode}"></td>
+                                                <td th:text="${project.projectName}"></td>
+                                                <td th:text="${#temporals.format(project.startDate,'MM.dd.yyyy') + ' - ' + #temporals.format(project.endDate,'MM.dd.yyyy')}"></td>
+                                                <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
+                                                <td th:text="${project.projectStatus}"></td>
+                                                <td>
+                                                    <a class="btn btn-warning rounded-0">Update</a>
+                                                    <a th:href="@{/project/delete/{id}(id=${project.getProjectCode()})}"><button type="button" class="btn btn-danger rounded-0">Delete</button></a>
+                                                    <a class="btn btn-info rounded-0">Complete</a>
                                                 </td>
                                             </tr>
                                             </tbody>

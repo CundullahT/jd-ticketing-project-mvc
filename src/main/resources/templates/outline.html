@@ -2,13 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-
-    <div th:replace="/fragments/head :: header"></div>
-
-    <title>Cybertek - Welcome</title>
-
-</head>
+<head th:replace="/fragments/head :: header"></head>
 
 <body>
 
@@ -55,6 +49,7 @@
                 </div>
 
 
+
                 <!-- ------------------------TABLE START----------------------------- -->
 
                 <div class="row">
@@ -95,7 +90,7 @@
 
     </div>
 
-    <div th:replace="/fragments/footer :: cybertekFooter"></div>
+    <div th:replace="/fragments/footer :: footer"></div>
 
 </div>
 
