@@ -54,7 +54,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Assigned Manager</label>
+                                                    <label class="col-form-label">Assigned Manager</label>
                                                     <select th:field="*{assignedManager}" class="custom-select" required="required">
                                                         <option th:value=" ''" th:text="Select"></option>
                                                         <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
@@ -66,13 +66,13 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Project Start Date</label>
+                                                    <label class="col-form-label">Project Start Date</label>
                                                     <input type="date" th:field="*{startDate}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Project End Date</label>
+                                                    <label class="col-form-label">Project End Date</label>
                                                     <input type="date" th:field="*{endDate}" class="form-control">
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Project Detail</label>
+                                                    <label class="col-form-label">Project Detail</label>
                                                     <textarea class="form-control" th:field="*{projectDetail}"required></textarea>
                                                 </div>
                                             </div>
