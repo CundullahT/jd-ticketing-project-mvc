@@ -80,8 +80,8 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="projectDetail">Project Detail</label>
-                                                    <textarea id="projectDetail" class="form-control" th:field="*{projectDetail}"required></textarea>
+                                                    <label>Project Detail</label>
+                                                    <textarea class="form-control" th:field="*{projectDetail}"required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,8 +138,8 @@
                                                 <td th:text="${project.projectStatus}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0">Update</a>
-                                                    <a th:href="@{/project/delete/{id}(id=${project.projectCode})}"><button type="button" class="btn btn-danger rounded-0">Delete</button></a>
-                                                    <a class="btn btn-info rounded-0">Complete</a>
+                                                    <a th:href="@{/project/delete/{id}(id=${project.getProjectCode()})}"><button type="button" class="btn btn-danger rounded-0">Delete</button></a>
+                                                    <a th:href="@{/project/complete/{id}(id=${project.getProjectCode()})}"class="btn btn-info rounded-0">Complete</a>
                                                 </td>
                                             </tr>
                                             </tbody>
