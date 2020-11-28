@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping("/create")
     public String insertUser(UserDTO user,Model model){
         userService.save(user);
-        return "redirect:/user/create";
+        return "redirect:/user/create";  //This calls GetMapping method not HTML file.
     }
 
     @GetMapping("/update/{username}")
