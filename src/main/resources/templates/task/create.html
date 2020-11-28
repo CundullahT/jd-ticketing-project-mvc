@@ -32,14 +32,15 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate>
+                                    <form class="needs-validation" novalidate th:action="@{/task/create}" method="post" th:object="${task}">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Project</label>
-                                                    <select class="custom-select" required="required">
-                                                        <option>Select</option>
-                                                        <option></option>
+                                                    <label for="projectSelect">Project</label>
+                                                    <select id="projectSelect" th:field="*{project}" class="custom-select" required="required">
+                                                        <option th:value=" ''" th:text="Select"></option>
+                                                        <option th:each="project : ${projects}" th:value="${project.projectCode}"
+                                                                th:text="${project.projectCode + '-' + project.projectName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback">Please choose project</div>
                                                 </div>
@@ -48,10 +49,11 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Assigned Employee</label>
-                                                    <select class="custom-select" required="required">
-                                                        <option>Select</option>
-                                                        <option></option>
+                                                    <label for="assignedEmployees">Assigned Employee</label>
+                                                    <select id="assignedEmployees" th:field="*{assignedEmployee}" class="custom-select" required="required">
+                                                        <option th:value=" ''" th:text="Select"></option>
+                                                        <option th:each="employee : ${employees}" th:value="${employee.userName}"
+                                                                th:text="${employee.firstName + ' ' + employee.lastName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback">Please choose employee</div>
                                                 </div>
@@ -60,8 +62,8 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Task Subject</label>
-                                                    <input id="projectname" type="text" placeholder="task subject" class="form-control" required>
+                                                    <label for="taskSubject" class="col-form-label">Task Subject</label>
+                                                    <input id="taskSubject" type="text" placeholder="task subject" th:field="*{taskSubject}" class="form-control" required>
                                                     <div class="invalid-feedback">Please enter task subject.</div>
                                                 </div>
                                             </div>
@@ -69,7 +71,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="taskDetail" class="col-form-label">Task Detail</label>
+                                                    <label for="taskDetail" th:field="*{taskDetail}" class="col-form-label">Task Detail</label>
                                                     <textarea id="taskDetail" class="form-control" required></textarea>
                                                     <div class="invalid-feedback">Please enter task detail.</div>
                                                 </div>
@@ -120,12 +122,12 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr th:each="task : ${tasks}">
+                                                <td th:text="${task.project.projectCode + '-' + task.project.projectName}"></td>
+                                                <td th:text="${task.taskSubject}"></td>
+                                                <td th:text="${task.assignedEmployee.firstName + ' ' + task.assignedEmployee.lastName}"></td>
+                                                <td th:text="${#temporals.format(task.assignedDate,'MM/dd/yyyy')}"></td>
+                                                <td th:text="${task.taskStatus}"></td>
                                                 <td>
                                                     <a class="btn btn-warning rounded-0">Update</a>
                                                     <a class="btn btn-danger rounded-0">Delete</a>
