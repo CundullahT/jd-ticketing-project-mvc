@@ -55,4 +55,15 @@ public class TaskController {
         return "redirect:/task/create";
     }
 
+    @GetMapping("/update/{id}")
+    public String editTask(@PathVariable("id") Long id, Model model){
+
+        return "";
+    }
+
+    @PostMapping("update/{id}")
+    public String updateTask(){
+        return "";
+    }
+
 }
