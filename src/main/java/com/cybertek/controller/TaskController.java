@@ -57,13 +57,17 @@ public class TaskController {
 
     @GetMapping("/update/{id}")
     public String editTask(@PathVariable("id") Long id, Model model){
-
-        return "";
+        model.addAttribute("task", taskService.findById(id));
+        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("employees", userService.findEmployees());
+        model.addAttribute("tasks", taskService.findAll());
+        return "task/update";
     }
 
     @PostMapping("update/{id}")
-    public String updateTask(){
-        return "";
+    public String updateTask(TaskDTO task){
+        taskService.update(task);
+        return "redirect:/task/create";
     }
 
 }
