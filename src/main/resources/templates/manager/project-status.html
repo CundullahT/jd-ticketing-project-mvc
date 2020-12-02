@@ -42,10 +42,14 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr th:each="project : ${projects}">
+                                                <td th:text="${project.projectCode}"></td>
+                                                <td th:text="${project.projectName}"></td>
+                                                <td th:text="${project.startDate + ' to ' + project.endDate}"></td>
+                                                <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
+                                                <td th:text="${project.unfinishedTaskCount + '/' + project.completeTaskCount}"></td>
+                                                <td th:text="${project.projectStatus}"></td>
+                                                <td><a href="" class="btn btn-info rounded-0">Complete</a></td>
                                             </tr>
                                             </tbody>
                                         </table>
