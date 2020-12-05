@@ -6,12 +6,10 @@ import com.cybertek.dto.TaskDTO;
 import com.cybertek.dto.UserDTO;
 import com.cybertek.enums.Gender;
 import com.cybertek.enums.Status;
-import com.cybertek.implementation.RoleServiceImpl;
 import com.cybertek.service.ProjectService;
 import com.cybertek.service.RoleService;
 import com.cybertek.service.TaskService;
 import com.cybertek.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
