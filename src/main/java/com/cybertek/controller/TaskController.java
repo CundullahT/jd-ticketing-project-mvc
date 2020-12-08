@@ -1,6 +1,7 @@
 package com.cybertek.controller;
 
 import com.cybertek.dto.TaskDTO;
+import com.cybertek.dto.UserDTO;
 import com.cybertek.enums.Status;
 import com.cybertek.service.ProjectService;
 import com.cybertek.service.TaskService;
@@ -8,13 +9,12 @@ import com.cybertek.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/task")
@@ -64,10 +64,43 @@ public class TaskController {
         return "task/update";
     }
 
-    @PostMapping("update/{id}")
+    @PostMapping("/update/{id}")
     public String updateTask(TaskDTO task){
         taskService.update(task);
         return "redirect:/task/create";
+    }
+
+    @GetMapping("/pending")
+    public String pendingTasks(Model model){
+
+        UserDTO employee = userService.findById("maria@cybertek.com");
+
+        model.addAttribute( "task", new TaskDTO());
+        model.addAttribute("tasks", taskService.findTaskByEmployee(employee));
+        model.addAttribute("statusList", Arrays.asList(Status.COMPLETE,Status.IN_PROGRESS,Status.OPEN,Status.UAT_TEST));
+        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("employees", userService.findEmployees());
+        return "/employee/pending";
+    }
+
+    @GetMapping("/update/pending/{id}")
+    public String editPendingTask(@ModelAttribute TaskDTO task, Model model){
+
+        UserDTO employee = userService.findById("maria@cybertek.com");
+
+        model.addAttribute("task", task);
+        model.addAttribute("tasks", taskService.findTaskByEmployee(employee));
+        model.addAttribute("statusList", Arrays.asList(Status.COMPLETE,Status.IN_PROGRESS,Status.OPEN,Status.UAT_TEST));
+        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("employees", userService.findEmployees());
+        return "/employee/update";
+    }
+
+    @PostMapping("/update/pending/{id}")
+    public String updatePendingTask(TaskDTO task){
+
+        taskService.update(task);
+        return "redirect:/task/pending";
     }
 
 }
