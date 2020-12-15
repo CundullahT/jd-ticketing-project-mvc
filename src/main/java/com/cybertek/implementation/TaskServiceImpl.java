@@ -2,6 +2,7 @@ package com.cybertek.implementation;
 
 import com.cybertek.dto.TaskDTO;
 import com.cybertek.dto.UserDTO;
+import com.cybertek.enums.Status;
 import com.cybertek.service.TaskService;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +53,11 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements
     @Override
     public List<TaskDTO> findTaskByEmployee(UserDTO employee) {
         return super.findAll().stream().filter(task -> task.getAssignedEmployee().equals(employee)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TaskDTO> findTaskByStatus(Status status) {
+        return super.findAll().stream().filter(task -> task.getTaskStatus().equals(status)).collect(Collectors.toList());
     }
 
 }

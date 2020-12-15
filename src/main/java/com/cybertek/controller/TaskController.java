@@ -28,9 +28,9 @@ public class TaskController {
     TaskService taskService;
 
     @GetMapping("/create")
-    public String createTask(Model model){
+    public String createTask(Model model) {
 
-        model.addAttribute("task",new TaskDTO());
+        model.addAttribute("task", new TaskDTO());
         model.addAttribute("projects", projectService.findAll());
         model.addAttribute("employees", userService.findEmployees());
         model.addAttribute("tasks", taskService.findAll());
@@ -40,7 +40,7 @@ public class TaskController {
     }
 
     @PostMapping("/create")
-    public String insertTask(TaskDTO task){
+    public String insertTask(TaskDTO task) {
         task.setTaskStatus(Status.OPEN);
         task.setAssignedDate(LocalDate.now());
         task.setId(UUID.randomUUID().getMostSignificantBits());
@@ -50,13 +50,13 @@ public class TaskController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteTask(@PathVariable("id") Long id){
+    public String deleteTask(@PathVariable("id") Long id) {
         taskService.deleteById(id);
         return "redirect:/task/create";
     }
 
     @GetMapping("/update/{id}")
-    public String editTask(@PathVariable("id") Long id, Model model){
+    public String editTask(@PathVariable("id") Long id, Model model) {
         model.addAttribute("task", taskService.findById(id));
         model.addAttribute("projects", projectService.findAll());
         model.addAttribute("employees", userService.findEmployees());
@@ -65,42 +65,51 @@ public class TaskController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateTask(TaskDTO task){
+    public String updateTask(TaskDTO task) {
         taskService.update(task);
         return "redirect:/task/create";
     }
 
     @GetMapping("/pending")
-    public String pendingTasks(Model model){
+    public String pendingTasks(Model model) {
 
         UserDTO employee = userService.findById("maria@cybertek.com");
 
-        model.addAttribute( "task", new TaskDTO());
+        model.addAttribute("task", new TaskDTO());
         model.addAttribute("tasks", taskService.findTaskByEmployee(employee));
-        model.addAttribute("statusList", Arrays.asList(Status.COMPLETE,Status.IN_PROGRESS,Status.OPEN,Status.UAT_TEST));
+        model.addAttribute("statusList", Arrays.asList(Status.COMPLETE, Status.IN_PROGRESS, Status.OPEN, Status.UAT_TEST));
         model.addAttribute("projects", projectService.findAll());
         model.addAttribute("employees", userService.findEmployees());
         return "/employee/pending";
     }
 
     @GetMapping("/update/pending/{id}")
-    public String editPendingTask(@ModelAttribute TaskDTO task, Model model){
+    public String editPendingTask(@ModelAttribute TaskDTO task, Model model) {
 
         UserDTO employee = userService.findById("maria@cybertek.com");
 
         model.addAttribute("task", task);
         model.addAttribute("tasks", taskService.findTaskByEmployee(employee));
-        model.addAttribute("statusList", Arrays.asList(Status.COMPLETE,Status.IN_PROGRESS,Status.OPEN,Status.UAT_TEST));
+        model.addAttribute("statusList", Arrays.asList(Status.COMPLETE, Status.IN_PROGRESS, Status.OPEN, Status.UAT_TEST));
         model.addAttribute("projects", projectService.findAll());
         model.addAttribute("employees", userService.findEmployees());
         return "/employee/update";
     }
 
     @PostMapping("/update/pending/{id}")
-    public String updatePendingTask(TaskDTO task){
+    public String updatePendingTask(TaskDTO task) {
 
         taskService.update(task);
         return "redirect:/task/pending";
+    }
+
+    @GetMapping("/archive")
+    public String getCompletedTasks(Model model) {
+
+        UserDTO employee = userService.findById("maria@cybertek.com");
+
+        model.addAttribute("tasks", taskService.findTaskByStatus(Status.COMPLETE).stream().filter(task -> task.getAssignedEmployee().equals(employee)).collect(Collectors.toList()));
+        return "/employee/archive";
     }
 
 }
